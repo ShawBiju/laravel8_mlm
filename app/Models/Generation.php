@@ -13,6 +13,5 @@ class Generation extends Model
             'main_id',
             'member_id',
             'gen_type',
-            'status'
     ];
 }

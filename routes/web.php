@@ -20,7 +20,9 @@ use App\Http\Controllers\User\Auth\RegisterController;
 */
 
 // User Panel Start
-Route::get('/', [HomeController::class, 'index'])->name('user.home');
+Route::get('/', [HomeController::class, 'index'])->name('user.home'); 
 Route::get('/login', [LoginController::class, 'index'])->name('user.login');
 Route::get('/register', [RegisterController::class, 'index'])->name('user.register');
+Route::post('/search-sponsor', [RegisterController::class, 'search_sponsorid'])->name('search.sponsorid');
+Route::post('/store', [RegisterController::class, 'store'])->name('user.store');
 // User Panel End

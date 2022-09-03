@@ -35,7 +35,7 @@
           <div class="navbar-collapse-header d-md-none">
             <div class="row">
               <div class="col-6 collapse-brand">
-                <a href="../index.html">
+                <a href="{{url('/')}}">
                   <img src="{{asset('')}}dashboard_assets/img/brand/blue.png">
                 </a>
               </div>
@@ -50,29 +50,12 @@
           <!-- Navbar items -->
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../index.html">
+              <a class="nav-link nav-link-icon" href="{{route('user.login')}}">
                 <i class="ni ni-planet"></i>
-                <span class="nav-link-inner--text">Dashboard</span>
+                <span class="nav-link-inner--text">Login Now</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../examples/register.html">
-                <i class="ni ni-circle-08"></i>
-                <span class="nav-link-inner--text">Register</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../examples/login.html">
-                <i class="ni ni-key-25"></i>
-                <span class="nav-link-inner--text">Login</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../examples/profile.html">
-                <i class="ni ni-single-02"></i>
-                <span class="nav-link-inner--text">Profile</span>
-              </a>
-            </li>
+            
           </ul>
         </div>
       </div>
@@ -83,8 +66,7 @@
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
             <div class="col-lg-5 col-md-6">
-              <h1 class="text-white">Welcome!</h1>
-              <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
+              <h1 class="text-white">Create Your Account</h1>
             </div>
           </div>
         </div>
@@ -96,68 +78,128 @@
       </div>
     </div>
     <!-- Page content -->
-    <div class="container mt--8 pb-5">
+    <div class="container mt--9 pb-2">
       <!-- Table -->
       <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8">
           <div class="card bg-secondary shadow border-0">
-            <div class="card-header bg-transparent pb-5">
-              <div class="text-muted text-center mt-2 mb-4"><small>Sign up with</small></div>
-              <div class="text-center">
-                <a href="#" class="btn btn-neutral btn-icon mr-4">
-                  <span class="btn-inner--icon"><img src="{{asset('')}}dashboard_assets/img/icons/common/github.svg"></span>
-                  <span class="btn-inner--text">Github</span>
-                </a>
-                <a href="#" class="btn btn-neutral btn-icon">
-                  <span class="btn-inner--icon"><img src="{{asset('')}}dashboard_assets/img/icons/common/google.svg"></span>
-                  <span class="btn-inner--text">Google</span>
-                </a>
-              </div>
-            </div>
+            
             <div class="card-body px-lg-5 py-lg-5">
-              <div class="text-center text-muted mb-4">
-                <small>Or sign up with credentials</small>
-              </div>
-              <form role="form">
+
+
+
+
+
+              <form role="form" action="{{ route('user.store') }}" method="post"> 
+                @csrf
+
+              <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input class="form-control" name="sponsor_id" value="{{old('sponsor_id')}}" placeholder="Sponsor Code" id="sponsor_id" type="text">
+                    <span id="spon_msg"></span>
+                    @error('sponsor_id')
+                    <br>
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                  </div>
+                </div>
+
                 <div class="form-group">
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Name" type="text">
+                    <input class="form-control" name="first_name" value="{{old('first_name')}}" placeholder="First Name" type="text">
                   </div>
+                  @error('first_name')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
+
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input class="form-control" name="last_name" value="{{old('last_name')}}" placeholder="Last Name" type="text">
+                  </div>
+                  @error('last_name')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input class="form-control" name="username" value="{{old('username')}}" placeholder="Create Your Username" type="text">
+                  </div>
+                  @error('username')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input class="form-control" name="mobile" value="{{old('mobile')}}" placeholder="Mobile No" type="text">
+                  </div>
+                  @error('mobile')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+
                 <div class="form-group">
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Email" type="email">
+                    <input class="form-control" name="email" value="{{old('email')}}" placeholder="Email" type="email">
                   </div>
+                  @error('email')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
+
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Password" type="password">
+                    <input class="form-control" name="password" placeholder="Password" type="password">
                   </div>
+                  @error('password')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
-                <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div>
-                <div class="row my-4">
-                  <div class="col-12">
-                    <div class="custom-control custom-control-alternative custom-checkbox">
-                      <input class="custom-control-input" id="customCheckRegister" type="checkbox">
-                      <label class="custom-control-label" for="customCheckRegister">
-                        <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
-                      </label>
+
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
+                    <input class="form-control" name="password_confirmation" placeholder="Confirm Password" type="password">
                   </div>
+                  @error('password_confirmation')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
+                
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary mt-4">Create account</button>
+                  <button type="submit" id="reg_btn" class="btn btn-primary mt-4">Create account</button>
                 </div>
               </form>
+
+
+
+
+
             </div>
           </div>
         </div>
@@ -207,6 +249,36 @@
         application: "argon-dashboard-free"
       });
   </script>
+
+<script>
+$(document).ready(function () {
+    $('#sponsor_id').on('keyup', function () {
+      $("#spon_msg").text('Searching...');
+        var sponsor_id = this.value;
+        $.ajax({
+            url: "{{route('search.sponsorid')}}",
+            type: "POST",
+            data: {
+              sponsor_id: sponsor_id,
+                _token: '{{csrf_token()}}'
+            },
+            success: function (result) {
+             if(result==0){
+              $("#spon_msg").text("Not Valid");
+              $("#spon_msg").css('color','red');
+              $("#reg_btn").hide();
+             }else{
+              $("#spon_msg").text(result);
+              $("#spon_msg").css('color','green');
+              $("#reg_btn").show();
+             }
+
+            }
+        });
+    });
+});
+</script>
+
 </body>
 
 </html>

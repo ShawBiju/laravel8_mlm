@@ -18,7 +18,6 @@ class CreateGenerationsTable extends Migration
             $table->bigInteger('main_id');
             $table->bigInteger('member_id');
             $table->bigInteger('gen_type');
-            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }
