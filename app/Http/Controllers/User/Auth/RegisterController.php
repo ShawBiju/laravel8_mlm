@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\{User,Generation};
 use Hash;
 
 class RegisterController extends Controller
@@ -52,11 +52,39 @@ class RegisterController extends Controller
             $model->sponsor_code = $sponsor_details->id;
             $model->password = Hash::make($request->password);
             $model->save();
+
+            $user_id = $model->id;
+            $sponsor_id = $sponsor_details->id;
+
+            // First Level
+            User::where(['id'=>$sponsor_id,'status'=>1])->increment('direct_group',1);
+            User::where(['id'=>$sponsor_id,'status'=>1])->increment('total_group',1);
+            $level = new Generation();
+            $level->main_id = $sponsor_id;
+            $level->member_id = $user_id;
+            $level->gen_type = 1;
+            $level->save();
+
+            // Generation
+            $i = 2;
+            $generation = $this->generation_loop($sponsor_id,$user_id,$i);
+
+
+
         }else{
-            
+
         }
 
+    } //function end
+
+
+
+    public function generation_loop($sponsor_id,$user_id,$i)
+    {
+        
     }
+
+
 
 
 }

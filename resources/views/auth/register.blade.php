@@ -87,8 +87,11 @@
             <div class="card-body px-lg-5 py-lg-5">
 
 
-
-
+@if(Session::has('msg'))
+<div class="alert alert-{{session('msg_class')}}">
+{{session('msg')}}
+</div>
+@endif
 
               <form role="form" action="{{ route('user.store') }}" method="post"> 
                 @csrf
